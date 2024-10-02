@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <title>Chronomètre</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            .chronometre{
+                margin: auto ;
+                width: 300px;
+                text-align: center;
+                }
+            .tim{
+                margin: auto;
+                width: 300px;
+                border: 1px solid rgba(0,0,0,0.5);
+                padding:5px 0;
+                text-align: center;
+                font-size: 1.5em;
+                font-family: digital;
+                margin-bottom: 10px;
+                }
+            button{
+                background: #3498db;
+                color: #fff;
+                width: 70px;
+                border-radius: 5px;
+                line-height: 1.5em;
+                border: none
+                }
+            #divspan{
+                position: relative;
+                width: 215px;
+                margin-bottom: 10px;
+                border: 1px solid #3498db;
+                }
+            #boutton {
+                width: 250px;
+            }
+        </style>
+        <script type="text/javascript">
+        var seconde=0, minute=0, ms=0, h=0;
+
+        var timer = null;
+        var idseconde;
+        var idminute;
+        var idheure;
+        var idms;
+
+        //2eme fonction
+        function incrementer() {
+           
+            //condition
+            ms++;
+            if (ms==60){
+                seconde++;
+                ms=0
+                if(seconde==60) {
+            minute++;
+            seconde=0;
+                  if(minute==60){
+                      h++;
+                      minute=0;
+                  }  
+            }
+            }
+            
+            
+           
+            //recupere
+            idms = document.getElementById("idms");
+            idseconde = document.getElementById("idseconde");
+            idminute = document.getElementById("idminute");
+            idheure = document.getElementById("idheure");
+
+
+            //modifie
+            idms.innerHTML=ms+"ms";
+            idseconde.innerHTML=seconde+"s";
+            idminute.innerHTML=minute+"mn";
+            idheure.innerHTML=h+"h";
+             }
+
+
+        //1er fonction
+        function démarrer(){
+            //1000 ms = 1 seconde
+            timer= setInterval(incrementer,15);
+
+        }
+
+
+        //3eme fonction
+        function arreter() {
+
+            clearInterval(timer);
+        }
+
+        //4eme fonction
+        function reset() {
+            ms=0;
+            seconde=0;
+            minute=0;
+            h=0;
+            //modifie
+            idms.innerHTML=ms+"ms";
+            idseconde.innerHTML=seconde+"s";
+            idminute.innerHTML=minute+"mn";
+            idheure.innerHTML=h+"h";
+        }
+
+
+
+
+        </script>
+
+    </head>
+
+    <body onload="démarrer();">
+        <div id="divspan">
+        <span id="idheure">0h</span>
+        <span id="idminute">0mn</span>
+        
+        <span id="idseconde">0s</span>
+        <span id="idms">0ms</span>
+        </div>
+
+        
+        <div id="bouton">
+        <button id="start" onclick="démarrer();">Start</button>
+        <button name="arreter" onclick="arreter();"> Stop </button>
+        <button id="reset" onclick="reset();" >Reset</button>
+
+        </div>        
+    </body>
+</html>
