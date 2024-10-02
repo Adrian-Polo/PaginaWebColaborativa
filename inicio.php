@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1> StuCom </h1>
 </body>
 </html>
